@@ -2,13 +2,20 @@ from fastapi import FastAPI
 from typing import Optional
 from data.product import product_list
 from enum import Enum
+from fastapi.middleware.cors import CORSMiddleware
 
 class SortOrder(str, Enum):
     asc = "asc"
     desc = "desc"
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True
+)
 
 
 # -------------------------
